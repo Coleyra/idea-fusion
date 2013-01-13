@@ -2,5 +2,14 @@
 
 
 {% block body %}
-Coucou
+
+{% for idea in ideas %}
+<div>
+	<h3><a href="">{{idea.title}}</a></h3>
+	<p>
+		{{idea.description}}
+	</p>
+</div>
+{% endfor %}
+
 {% endblock body %}

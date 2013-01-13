@@ -19,6 +19,10 @@ class CoreController extends Controller
 	*/
 	public function indexAction(Request $request)
 	{
-		return array();
+		$em = $this->getDoctrine()->getEntityManager();
+
+		$ideas = $em->getRepository('IdeaFusionCoreBundle:Idea')->findAll();
+	
+		return array('ideas' => $ideas);
 	}
 }

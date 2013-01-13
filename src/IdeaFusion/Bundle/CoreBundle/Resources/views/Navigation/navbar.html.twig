@@ -1,0 +1,24 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="{{ path('index') }}" style="padding : 0;">Home</a>
+		<ul class="nav">
+          <li>
+			<a href="{{ path('create_idea') }}">Create Idea</a>
+		  </li>
+		</ul>
+      <div class="nav-collapse">
+		{% if app.user %}
+		<p class="navbar-text pull-right">
+			Logged in as <a href="{{ path('logout')}}" title="Logout" class="navbar-link">{{ app.user.username }}<i class="icon-off icon-white"></i></a>
+		</p>
+		{% endif %}
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
