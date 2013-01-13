@@ -5,7 +5,7 @@ namespace IdeaFusion\Bundle\UsersBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
-use Symfony\Component\Validator\Constraints as Assert; // pour la validation
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
@@ -19,7 +19,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Entity(repositoryClass="IdeaFusion\Bundle\UsersBundle\Entity\Repository\UserRepository")
  * @ORM\Table(name="users")
- * @UniqueEntity(fields="login", message="Un utilisateur existe déjà avec ce login.")
+ * @UniqueEntity(fields="login", message="Login already in use.")
  */
 class User implements AdvancedUserInterface
 {
@@ -85,7 +85,7 @@ class User implements AdvancedUserInterface
     /**
      * @ORM\Column(type="datetime")
      */
-    protected $date_creation;
+    protected $date_create;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -100,7 +100,7 @@ class User implements AdvancedUserInterface
     public function __construct()
     {
 		//valeurs par défaut
-    	$this->date_creation = new \DateTime();
+    	$this->date_create = new \DateTime();
 		$this->actif = 1;
     }
 
@@ -335,26 +335,26 @@ class User implements AdvancedUserInterface
     }
 
     /**
-     * Set the value of date_creation.
+     * Set the value of date_create.
      *
-     * @param integer $date_creation
+     * @param integer $date_create
      * @return \Ic\Bundle\PslwebBundle\Entity\User
      */
-    public function setDateCreation($date_creation)
+    public function setDateCreate($date_create)
     {
-        $this->date_creation = $date_creation;
+        $this->date_create = $date_create;
 
         return $this;
     }
 
     /**
-     * Get the value of date_creation.
+     * Get the value of date_create.
      *
      * @return integer
      */
-    public function getDateCreation()
+    public function getDateCreate()
     {
-        return $this->date_creation;
+        return $this->date_create;
     }
 
     /**
