@@ -1,0 +1,24 @@
+# Internal routing configuration to handle ESI
+# ****** WARNING ******
+# This route should be enabled with caution as it can open a security vulnerability
+# see http://symfony.com/blog/security-release-symfony-2-0-20-and-2-1-5-released for more information
+# ****** WARNING ******
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal
+IdeaFusionUsersBundle:
+    resource: "@IdeaFusionUsersBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+IdeaFusionCoreBundle:
+    resource: "@IdeaFusionCoreBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+login_check:
+    pattern: /login_check
+    requirements: {_method : POST }
+
+logout:
+    pattern: /logout

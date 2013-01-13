@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>  {% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Styles -->
+    <link href="{{ asset('bundles/ideafusioncore/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/ideafusioncore/css/bootstrap-responsive.min.css') }}" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+
+    {% block css %}{% endblock %}
+
+
+
+		<script>
+			var basepath = "{{ path('index') }}";
+		</script>
+    {% block headerJs %}{% endblock %}
+  </head>
+
+  <body>
+
+  	{# Barre de navigation top #}
+	{% if app.user %}
+	{% endif %}
+
+    <div class="container">
+    <!-- CONTENT HERE -->
+
+	    {% if app.session.hasFlash('success') %}
+		    <div class="alert alert-success">
+		        {{ app.session.flash('success') }}
+		    </div>
+	 	{% endif %}
+	 	{% if app.session.hasFlash('notice') %}
+		    <div class="alert alert-error">
+		        {{ app.session.flash('notice') }}
+		    </div>
+	 	{% endif %}
+	 	{% if app.session.hasFlash('info') %}
+		    <div class="alert alert-info">
+		        {{ app.session.flash('info') }}
+		    </div>
+	 	{% endif %}
+
+      	{% block body %}{% endblock %}
+
+
+
+    </div> <!-- /container -->
+
+    <footer class="footer">
+      	<div class="container">
+	        	<p>© </p>
+        </div>
+    </footer>
+
+    <!-- Javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ asset('bundles/ideafusioncore/js/vendor/bootstrap/bootstrap.min.js') }}"></script>
+
+    {% block javascripts %}{% endblock %}
+
+  </body>
+</html>

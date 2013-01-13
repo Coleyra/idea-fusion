@@ -1,0 +1,50 @@
+security:
+    encoders:
+        IdeaFusion\Bundle\UsersBundle\Entity\User:
+             algorithm: sha512
+             iterations: 2000
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+         users:
+             entity: { class: IdeaFusionUsersBundle:User, property: login }
+
+    firewalls:
+        main:
+            pattern: ^/*
+            anonymous: true
+            provider: users
+            form_login:
+                login_path: /login
+                check_path: /login_check
+                default_target_path : /                
+            remember_me:
+                key:      "%secret%"
+                lifetime: 2592000
+                path:     /
+                domain:   ~ # Defaults to the current domain from $_SERVER
+            logout:
+                path: /logout
+                target: /
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+            
+        
+        # back_office:
+        #     pattern: ^/bo
+        #     http_basic:
+        #        realm: "Secured back office area"
+
+    access_control:
+        - { path: ^/_wdt, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/_profiler, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/registration, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/confirm-registration/token/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/forgotpassword, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: [IS_AUTHENTICATED_FULLY,IS_AUTHENTICATED_REMEMBERED]}
+        - { path: ^/admin, roles: ROLE_ADMIN }
