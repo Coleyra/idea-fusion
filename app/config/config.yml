@@ -22,6 +22,10 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        project_name: Idea Fusion
+        version: 0.0.1
+        team_name: IF Team
 
 # Assetic Configuration
 assetic:
