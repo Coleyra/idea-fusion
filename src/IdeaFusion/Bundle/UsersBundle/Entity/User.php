@@ -108,7 +108,7 @@ class User implements AdvancedUserInterface
      * Set the value of id_user.
      *
      * @param integer $id_user
-     * @return \Ic\Bundle\PslwebBundle\Entity\User
+     * @return \IdeaFusion\Bundle\UsersBundle\Entity\User
      */
     public function setIdUser($id_user)
     {
@@ -131,7 +131,7 @@ class User implements AdvancedUserInterface
      * Set the value of email.
      *
      * @param string $email
-     * @return \Ic\Bundle\PslwebBundle\Entity\User
+     * @return \IdeaFusion\Bundle\UsersBundle\Entity\User
      */
     public function setEmail($email)
     {
@@ -154,7 +154,7 @@ class User implements AdvancedUserInterface
      * Set the value of type_email.
      *
      * @param string $type_email
-     * @return \Ic\Bundle\PslwebBundle\Entity\User
+     * @return \IdeaFusion\Bundle\UsersBundle\Entity\User
      */
     public function setTypeEmail($type_email)
     {
@@ -177,7 +177,7 @@ class User implements AdvancedUserInterface
      * Set the value of login.
      *
      * @param string $login
-     * @return \Ic\Bundle\PslwebBundle\Entity\User
+     * @return \IdeaFusion\Bundle\UsersBundle\Entity\User
      */
     public function setLogin($login)
     {
@@ -200,7 +200,7 @@ class User implements AdvancedUserInterface
      * Set the value of password.
      *
      * @param string $password
-     * @return \Ic\Bundle\PslwebBundle\Entity\User
+     * @return \IdeaFusion\Bundle\UsersBundle\Entity\User
      */
     public function setPassword($password)
     {
@@ -223,7 +223,7 @@ class User implements AdvancedUserInterface
      * Set the value of salt.
      *
      * @param string $salt
-     * @return \Ic\Bundle\PslwebBundle\Entity\User
+     * @return \IdeaFusion\Bundle\UsersBundle\Entity\User
      */
     public function setSalt($salt)
     {
@@ -246,7 +246,7 @@ class User implements AdvancedUserInterface
      * Set the value of lastname.
      *
      * @param string $lastname
-     * @return \Ic\Bundle\PslwebBundle\Entity\User
+     * @return \IdeaFusion\Bundle\UsersBundle\Entity\User
      */
     public function setLastname($lastname)
     {
@@ -269,7 +269,7 @@ class User implements AdvancedUserInterface
      * Set the value of firstname.
      *
      * @param string $firstname
-     * @return \Ic\Bundle\PslwebBundle\Entity\User
+     * @return \IdeaFusion\Bundle\UsersBundle\Entity\User
      */
     public function setFirstname($firstname)
     {
@@ -292,7 +292,7 @@ class User implements AdvancedUserInterface
      * Set the value of avatar.
      *
      * @param string $avatar
-     * @return \Ic\Bundle\PslwebBundle\Entity\User
+     * @return \IdeaFusion\Bundle\UsersBundle\Entity\User
      */
     public function setAvatar($avatar)
     {
@@ -315,7 +315,7 @@ class User implements AdvancedUserInterface
      * Set the value of actif.
      *
      * @param integer $actif
-     * @return \Ic\Bundle\PslwebBundle\Entity\User
+     * @return \IdeaFusion\Bundle\UsersBundle\Entity\User
      */
     public function setActif($actif)
     {
@@ -338,7 +338,7 @@ class User implements AdvancedUserInterface
      * Set the value of date_create.
      *
      * @param integer $date_create
-     * @return \Ic\Bundle\PslwebBundle\Entity\User
+     * @return \IdeaFusion\Bundle\UsersBundle\Entity\User
      */
     public function setDateCreate($date_create)
     {
@@ -361,7 +361,7 @@ class User implements AdvancedUserInterface
      * Set the value of date_update.
      *
      * @param integer $date_update
-     * @return \Ic\Bundle\PslwebBundle\Entity\User
+     * @return \IdeaFusion\Bundle\UsersBundle\Entity\User
      */
     public function setDateUpdate($date_update)
     {
@@ -384,7 +384,7 @@ class User implements AdvancedUserInterface
      * Set the value of last_connect.
      *
      * @param integer $last_connect
-     * @return \Ic\Bundle\PslwebBundle\Entity\User
+     * @return \IdeaFusion\Bundle\UsersBundle\Entity\User
      */
     public function setLastConnect($last_connect)
     {
@@ -477,7 +477,7 @@ class User implements AdvancedUserInterface
                     $sexe = 'femme';
                 break;
             }
-            return 'bundles/icpslweb/img/default_'.$sexe.'.png';
+            return 'bundles/ideafusion/img/default_'.$sexe.'.png';
         }
         else return $this->getUploadDir().'/'.$this->avatar;
     }

@@ -1,6 +1,4 @@
 <?php
-// Ic/Bundle/PslwebBundle/Form/UserHandler.php
-
 namespace IdeaFusion\Bundle\UsersBundle\Form;
 
 use Symfony\Component\Form\Form;
