@@ -1,9 +1,9 @@
-{% extends "IdeaFusionCoreBundle:Idea:layout.html.twig" %}
+{% extends "IdeaFusionCoreBundle:Solution:layout.html.twig" %}
 
 {% block body %}
 	{{ parent() }}        
 	<h1>Idea Creation</h1>
-	<form action="{{ path('idea_create') }}" class="content-block form-inline" method="POST" {{ form_enctype(form) }} novalidate>
+	<form action="{{ path('solution_create', {'id_idea' : idea.idIdea}) }}" class="content-block form-inline" method="POST" {{ form_enctype(form) }} novalidate>
 		{{ form_widget(form) }}
 		<hr />
 		<div>

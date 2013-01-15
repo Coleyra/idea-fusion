@@ -9,6 +9,15 @@
 	<p>
 		{{idea.description}}
 	</p>
+	{% for solution in idea.solutions %}
+	<div>
+		<h4>{{solution.title}}</h4>
+		<p>
+			{{solution.description}}
+		</p>
+	</div>
+	{% endfor %}
+	<a href="{{path('solution_create', {'id_idea' : idea.idIdea})}}">Add a solution</a>
 </div>
 {% endfor %}
 

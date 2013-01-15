@@ -7,44 +7,49 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use IdeaFusion\Bundle\CoreBundle\Entity\Idea;
-use IdeaFusion\Bundle\CoreBundle\Form\IdeaType;
+use IdeaFusion\Bundle\CoreBundle\Entity\Solution;
+use IdeaFusion\Bundle\CoreBundle\Form\SolutionType;
 
 /** 
- * @Route("/idea")
+ * @Route("/solution")
  */
-class IdeaController extends Controller
+class SolutionController extends Controller
 {
 	/**
-	 * @Route("/create", name="idea_create")
+	 * @Route("/create/{id_idea}", requirements={"id_idea" = "\d+"}, name="solution_create")
 	 * @Template()
+	 * @ParamConverter("idea", class="IdeaFusionCoreBundle:Idea")
 	 * 
 	 * @author Florian Mahieu
 	 * Create Idea Page
 	 */
-	public function createAction(Request $request)
+	public function createAction(Request $request, Idea $idea)
 	{
 		$em = $this->getDoctrine()->getEntityManager();
 		$session = $request->getSession();
 
-		$idea = new Idea();
+		$solution = new Solution();
 		
-		$form = $this->createForm(new IdeaType(), $idea);
+		$form = $this->createForm(new SolutionType(), $solution);
 
 		if( 'POST' === $request->getMethod() )
 		{
 			$form->bindRequest($request);
 			if( $form->isValid() )
 			{
-				$em->persist($idea);
+				$solution->setIdea($idea);
+				$em->persist($solution);
 				$em->flush();
 				return $this->redirect($this->generateUrl('index'));
 			}
 		}
 
 		return array(
-				'form' => $form->createView()
+				'form' => $form->createView(),
+				'idea' => $idea
 		);
 	}
 }
