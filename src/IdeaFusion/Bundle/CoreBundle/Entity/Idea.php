@@ -43,17 +43,23 @@ class Idea
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $date_update;
-    
+
+    /**
+     * @ORM\OneToMany(targetEntity="Solution", mappedBy="idea")
+     */
+    protected $solutions;
+
     public function __construct()
     {
     	$this->date_create = new \DateTime();
+		$this->solutions = new ArrayCollection();
     }
 
     /**
      * Set the value of id_idea.
      *
      * @param integer $id_idea
-     * @return \Ic\Bundle\PslwebBundle\Entity\Idea
+     * @return \IdeaFusion\Bundle\CoreBundle\Entity\Idea
      */
     public function setIdIdea($id_idea)
     {
@@ -76,7 +82,7 @@ class Idea
      * Set the value of title.
      *
      * @param string $title
-     * @return \Ic\Bundle\PslwebBundle\Entity\Idea
+     * @return \IdeaFusion\Bundle\CoreBundle\Entity\Idea
      */
     public function setTitle($title)
     {
@@ -99,7 +105,7 @@ class Idea
      * Set the value of description.
      *
      * @param string $description
-     * @return \Ic\Bundle\PslwebBundle\Entity\Idea
+     * @return \IdeaFusion\Bundle\CoreBundle\Entity\Idea
      */
     public function setDescription($description)
     {
@@ -122,7 +128,7 @@ class Idea
      * Set the value of date_create.
      *
      * @param integer $date_create
-     * @return \Ic\Bundle\PslwebBundle\Entity\Idea
+     * @return \IdeaFusion\Bundle\CoreBundle\Entity\Idea
      */
     public function setDateCreate($date_create)
     {
@@ -145,7 +151,7 @@ class Idea
      * Set the value of date_update.
      *
      * @param integer $date_update
-     * @return \Ic\Bundle\PslwebBundle\Entity\Idea
+     * @return \IdeaFusion\Bundle\CoreBundle\Entity\Idea
      */
     public function setDateUpdate($date_update)
     {
@@ -162,5 +168,29 @@ class Idea
     public function getDateUpdate()
     {
         return $this->date_update;
+    }
+
+    /**
+     * Add Solution entity to collection (one to many).
+     *
+     * @param \IdeaFusion\Bundle\CoreBundle\Entity\Solution $solution
+     * @return \IdeaFusion\Bundle\CoreBundle\Entity\Idea
+     */
+    public function addSolution(Solution $solution)
+    {
+        $this->solutions[] = $solution;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of solutions.
+     *
+     * @return integer
+     */
+    public function getSolutions()
+    {
+        return $this->solutions;
     }
 }

@@ -44,7 +44,13 @@ class Solution
      */
     protected $date_update;
     
-    public function __construct()
+    /**
+     * @ORM\ManyToOne(targetEntity="Idea", inversedBy="solutions")
+     * @ORM\JoinColumn(name="id_idea", referencedColumnName="id_idea")
+     */
+    protected $idea;
+
+	public function __construct()
     {
     	$this->date_create = new \DateTime();
     }
@@ -53,7 +59,7 @@ class Solution
      * Set the value of id_solution.
      *
      * @param integer $id_solution
-     * @return \Ic\Bundle\PslwebBundle\Entity\Solution
+     * @return \IdeaFusion\Bundle\CoreBundle\Entity\Solution
      */
     public function setIdSolution($id_solution)
     {
@@ -76,7 +82,7 @@ class Solution
      * Set the value of title.
      *
      * @param string $title
-     * @return \Ic\Bundle\PslwebBundle\Entity\Solution
+     * @return \IdeaFusion\Bundle\CoreBundle\Entity\Solution
      */
     public function setTitle($title)
     {
@@ -99,7 +105,7 @@ class Solution
      * Set the value of description.
      *
      * @param string $description
-     * @return \Ic\Bundle\PslwebBundle\Entity\Solution
+     * @return \IdeaFusion\Bundle\CoreBundle\Entity\Solution
      */
     public function setDescription($description)
     {
@@ -122,7 +128,7 @@ class Solution
      * Set the value of date_create.
      *
      * @param integer $date_create
-     * @return \Ic\Bundle\PslwebBundle\Entity\Solution
+     * @return \IdeaFusion\Bundle\CoreBundle\Entity\Solution
      */
     public function setDateCreate($date_create)
     {
@@ -145,7 +151,7 @@ class Solution
      * Set the value of date_update.
      *
      * @param integer $date_update
-     * @return \Ic\Bundle\PslwebBundle\Entity\Solution
+     * @return \IdeaFusion\Bundle\CoreBundle\Entity\Solution
      */
     public function setDateUpdate($date_update)
     {
@@ -162,5 +168,28 @@ class Solution
     public function getDateUpdate()
     {
         return $this->date_update;
+    }
+
+    /**
+     * Set the value of idea.
+     *
+     * @param integer $idea
+     * @return \IdeaFusion\Bundle\CoreBundle\Entity\Solution
+     */
+    public function setIdea($idea)
+    {
+        $this->idea = $idea;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of idea.
+     *
+     * @return integer
+     */
+    public function getIdea()
+    {
+        return $this->idea;
     }
 }
