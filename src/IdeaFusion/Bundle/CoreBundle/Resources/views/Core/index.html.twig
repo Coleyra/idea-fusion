@@ -6,12 +6,14 @@
 {% for idea in ideas %}
 <div>
 	<h3><a href="">{{idea.title}}</a></h3>
+	<span>Written by {{idea.user.login}} the {{idea.dateCreate|date("F jS \\a\\t H:i")}}. </span>
 	<p>
 		{{idea.description}}
 	</p>
 	{% for solution in idea.solutions %}
 	<div>
 		<h4>{{solution.title}} ({{solution.sumVotes}})</h4>
+		<span>Written by {{solution.user.login}} the {{solution.dateCreate|date("F jS \\a\\t H:i")}}. </span>
 		<p>
 			{{solution.description}}
 		</p>
