@@ -50,9 +50,15 @@ class Solution
      */
     protected $idea;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vote", mappedBy="solution")
+     */
+    protected $votes;
+
 	public function __construct()
     {
     	$this->date_create = new \DateTime();
+		$this->votes = new ArrayCollection();
     }
 
     /**
@@ -191,5 +197,28 @@ class Solution
     public function getIdea()
     {
         return $this->idea;
+    }
+
+    /**
+     * Add Vote entity to collection (one to many).
+     *
+     * @param \IdeaFusion\Bundle\CoreBundle\Entity\Vote $vote
+     * @return \IdeaFusion\Bundle\CoreBundle\Entity\Solution
+     */
+    public function addVote(Vote $vote)
+    {
+        $this->votes[] = $vote;
+
+        return $this;
+    }
+
+	/**
+     * Get the value of votes.
+     *
+     * @return integer
+     */
+    public function getVotes()
+    {
+        return $this->votes;
     }
 }

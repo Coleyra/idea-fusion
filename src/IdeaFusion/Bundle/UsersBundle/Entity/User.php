@@ -96,10 +96,16 @@ class User implements AdvancedUserInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $last_connect;
-    
-    public function __construct()
+
+    /**
+     * @ORM\OneToMany(targetEntity="IdeaFusion\Bundle\CoreBundle\Entity\Vote", mappedBy="user")
+     */
+    protected $votes;
+
+	public function __construct()
     {
 		//valeurs par défaut
+		$this->solutions = new ArrayCollection();
     	$this->date_create = new \DateTime();
 		$this->actif = 1;
     }
@@ -404,6 +410,29 @@ class User implements AdvancedUserInterface
     }
 
     /**
+     * Add Vote entity to collection (one to many).
+     *
+     * @param \IdeaFusion\Bundle\CoreBundle\Entity\Vote $vote
+     * @return \IdeaFusion\Bundle\UsersBundle\Entity\User
+     */
+    public function addVote(Vote $vote)
+    {
+        $this->votes[] = $vote;
+
+        return $this;
+    }
+
+	/**
+     * Get the value of votes.
+     *
+     * @return integer
+     */
+    public function getVotes()
+    {
+        return $this->votes;
+    }
+
+	/**
 	 * Fonction permettant de faire la correspondance entre les rôles en BDD et ceux de Symfony
 	 * @param integer $id_role
 	 */
