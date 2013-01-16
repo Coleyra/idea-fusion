@@ -17,18 +17,18 @@ class Vote
 {
     /**
      * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Solution", inversedBy="votes")
+     * @ORM\JoinColumn(name="id_solution", referencedColumnName="id_solution")
+     */
+    protected $solution;
+
+	/**
+     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="IdeaFusion\Bundle\UsersBundle\Entity\User", inversedBy="votes")
      * @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
      */
     protected $user;
 
-    /**
-     * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Solution", inversedBy="votes")
-     * @ORM\JoinColumn(name="id_solution", referencedColumnName="id_solution")
-     */
-    protected $solution;
-    
     /**
      * @ORM\Column(type="integer")
      */

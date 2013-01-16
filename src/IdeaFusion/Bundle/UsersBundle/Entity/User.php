@@ -97,15 +97,9 @@ class User implements AdvancedUserInterface
      */
     protected $last_connect;
 
-    /**
-     * @ORM\OneToMany(targetEntity="IdeaFusion\Bundle\CoreBundle\Entity\Vote", mappedBy="user")
-     */
-    protected $votes;
-
 	public function __construct()
     {
 		//valeurs par défaut
-		$this->solutions = new ArrayCollection();
     	$this->date_create = new \DateTime();
 		$this->actif = 1;
     }
@@ -407,29 +401,6 @@ class User implements AdvancedUserInterface
     public function getLastConnect()
     {
         return $this->last_connect;
-    }
-
-    /**
-     * Add Vote entity to collection (one to many).
-     *
-     * @param \IdeaFusion\Bundle\CoreBundle\Entity\Vote $vote
-     * @return \IdeaFusion\Bundle\UsersBundle\Entity\User
-     */
-    public function addVote(Vote $vote)
-    {
-        $this->votes[] = $vote;
-
-        return $this;
-    }
-
-	/**
-     * Get the value of votes.
-     *
-     * @return integer
-     */
-    public function getVotes()
-    {
-        return $this->votes;
     }
 
 	/**

@@ -221,4 +221,19 @@ class Solution
     {
         return $this->votes;
     }
+
+	/**
+     * Get the sum of all the of votes.
+     *
+     * @return integer
+     */
+    public function getSumVotes()
+    {
+		$sumVotes = 0;
+		foreach($this->votes as $v)
+		{
+			$sumVotes += $v->getPoint();
+		}
+        return $sumVotes;
+    }
 }
