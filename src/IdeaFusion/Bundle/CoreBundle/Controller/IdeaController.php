@@ -26,7 +26,7 @@ class IdeaController extends Controller
 	public function createAction(Request $request)
 	{
 		$em = $this->getDoctrine()->getEntityManager();
-		$session = $request->getSession();
+		$user = $this->container->get('security.context')->getToken()->getUser();
 
 		$idea = new Idea();
 		
@@ -37,6 +37,7 @@ class IdeaController extends Controller
 			$form->bindRequest($request);
 			if( $form->isValid() )
 			{
+				$idea->setUser($user);
 				$em->persist($idea);
 				$em->flush();
 				return $this->redirect($this->generateUrl('index'));

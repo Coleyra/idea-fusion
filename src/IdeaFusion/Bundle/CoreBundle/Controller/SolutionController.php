@@ -30,7 +30,7 @@ class SolutionController extends Controller
 	public function createAction(Request $request, Idea $idea)
 	{
 		$em = $this->getDoctrine()->getEntityManager();
-		$session = $request->getSession();
+		$user = $this->container->get('security.context')->getToken()->getUser();
 
 		$solution = new Solution();
 		
@@ -42,6 +42,7 @@ class SolutionController extends Controller
 			if( $form->isValid() )
 			{
 				$solution->setIdea($idea);
+				$solution->setUser($user);
 				$em->persist($solution);
 				$em->flush();
 				return $this->redirect($this->generateUrl('index'));

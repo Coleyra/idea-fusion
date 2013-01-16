@@ -49,7 +49,13 @@ class Idea
      */
     protected $solutions;
 
-    public function __construct()
+    /**
+     * @ORM\ManyToOne(targetEntity="IdeaFusion\Bundle\UsersBundle\Entity\User", inversedBy="ideas")
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     */
+    protected $user;
+
+	public function __construct()
     {
     	$this->date_create = new \DateTime();
 		$this->solutions = new ArrayCollection();
@@ -171,6 +177,29 @@ class Idea
     }
 
     /**
+     * Set the value of user.
+     *
+     * @param integer $user
+     * @return \IdeaFusion\Bundle\CoreBundle\Entity\Idea
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of user.
+     *
+     * @return integer
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+	/**
      * Add Solution entity to collection (one to many).
      *
      * @param \IdeaFusion\Bundle\CoreBundle\Entity\Solution $solution

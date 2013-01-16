@@ -97,11 +97,23 @@ class User implements AdvancedUserInterface
      */
     protected $last_connect;
 
+    /**
+     * @ORM\OneToMany(targetEntity="IdeaFusion\Bundle\CoreBundle\Entity\Idea", mappedBy="user")
+     */
+    protected $ideas;
+
+    /**
+     * @ORM\OneToMany(targetEntity="IdeaFusion\Bundle\CoreBundle\Entity\Solution", mappedBy="user")
+     */
+    protected $solutions;
+
 	public function __construct()
     {
 		//valeurs par défaut
     	$this->date_create = new \DateTime();
 		$this->actif = 1;
+		$this->ideas = new ArrayCollection();
+		$this->solutions = new ArrayCollection();
     }
 
     /**
@@ -401,6 +413,52 @@ class User implements AdvancedUserInterface
     public function getLastConnect()
     {
         return $this->last_connect;
+    }
+
+    /**
+     * Add Idea entity to collection (one to many).
+     *
+     * @param IdeaFusion\Bundle\CoreBundle\Entity\Idea $idea
+     * @return IdeaFusion\Bundle\UsersBundle\Entity\User
+     */
+    public function addIdea(\IdeaFusion\Bundle\CoreBundle\Entity\Idea $idea)
+    {
+        $this->ideas[] = $idea;
+
+        return $this;
+    }
+
+	/**
+     * Get the value of ideas.
+     *
+     * @return integer
+     */
+    public function getIdeas()
+    {
+        return $this->ideas;
+    }
+
+    /**
+     * Add Solution entity to collection (one to many).
+     *
+     * @param IdeaFusion\Bundle\CoreBundle\Entity\Solution $solution
+     * @return IdeaFusion\Bundle\UsersBundle\Entity\User
+     */
+    public function addSolution(\IdeaFusion\Bundle\CoreBundle\Entity\Solution $solution)
+    {
+        $this->solutions[] = $solution;
+
+        return $this;
+    }
+
+	/**
+     * Get the value of solutions.
+     *
+     * @return integer
+     */
+    public function getSolutions()
+    {
+        return $this->solutions;
     }
 
 	/**

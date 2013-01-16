@@ -51,6 +51,12 @@ class Solution
     protected $idea;
 
     /**
+     * @ORM\ManyToOne(targetEntity="IdeaFusion\Bundle\UsersBundle\Entity\User", inversedBy="solutions")
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     */
+    protected $user;
+
+	/**
      * @ORM\OneToMany(targetEntity="Vote", mappedBy="solution")
      */
     protected $votes;
@@ -197,6 +203,29 @@ class Solution
     public function getIdea()
     {
         return $this->idea;
+    }
+
+    /**
+     * Set the value of user.
+     *
+     * @param integer $user
+     * @return \IdeaFusion\Bundle\CoreBundle\Entity\Solution
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of user.
+     *
+     * @return integer
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**
