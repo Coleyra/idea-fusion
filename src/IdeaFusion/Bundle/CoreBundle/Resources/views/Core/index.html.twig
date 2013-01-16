@@ -11,10 +11,13 @@
 	</p>
 	{% for solution in idea.solutions %}
 	<div>
-		<h4>{{solution.title}}</h4>
+		<h4>{{solution.title}} ({{solution.sumVotes}})</h4>
 		<p>
 			{{solution.description}}
 		</p>
+		<a href="{{path('solution_vote', {'id_solution' : solution.idSolution, 'point' : 1})}}">+</a>
+		<a href="{{path('solution_vote', {'id_solution' : solution.idSolution, 'point' : 0})}}">/</a>
+		<a href="{{path('solution_vote', {'id_solution' : solution.idSolution, 'point' : -1})}}">-</a>
 	</div>
 	{% endfor %}
 	<a href="{{path('solution_create', {'id_idea' : idea.idIdea})}}">Add a solution</a>

@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use IdeaFusion\Bundle\CoreBundle\Entity\Idea;
 use IdeaFusion\Bundle\CoreBundle\Entity\Solution;
+use IdeaFusion\Bundle\CoreBundle\Entity\Vote;
 use IdeaFusion\Bundle\CoreBundle\Form\SolutionType;
 
 /** 
@@ -51,5 +52,36 @@ class SolutionController extends Controller
 				'form' => $form->createView(),
 				'idea' => $idea
 		);
+	}
+	
+	/**
+	 * @Route("/vote/{id_solution}/{point}", requirements={"id_solution" = "\d+"}, name="solution_vote")
+	 * @Template()
+	 * @ParamConverter("solution", class="IdeaFusionCoreBundle:Solution")
+	 * 
+	 * @author Florian Mahieu
+	 * Create Idea Page
+	 */
+	public function voteAction(Request $request, Solution $solution, $point)
+	{
+		$em = $this->getDoctrine()->getEntityManager();
+		$user = $this->container->get('security.context')->getToken()->getUser();
+
+		$vote = new Vote();
+		$vote->setUser($user);
+		$vote->setSolution($solution);
+		$vote->setPoint($point);
+
+		$em->persist($vote);
+		try
+		{
+			$em->flush();
+			$this->get('session')->setFlash('success', 'Vote added');
+		}
+		catch(\Exception $e)
+		{
+			$this->get('session')->setFlash('notice', 'You already vote for this solution');
+		}
+		return $this->redirect($this->generateUrl('index'));
 	}
 }
