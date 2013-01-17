@@ -4,11 +4,11 @@
 {% block body %}
 
 {% for idea in ideas %}
-<div>
+<div class="well">
 	<h3><a href="">{{idea.title}}</a></h3>
 	<small>Written by {{idea.user.login}} the {{idea.dateCreate|date("F jS \\a\\t H:i")}}. </small>
 	<p>
-		{{idea.description}}
+		{{idea.description|nl2br}}
 	</p>
 	{% for solution in idea.solutions %}
 	<blockquote>
