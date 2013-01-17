@@ -11,16 +11,21 @@
 		{{idea.description}}
 	</p>
 	{% for solution in idea.solutions %}
-	<div>
-		<h4>{{solution.title}} ({{solution.sumVotes}})</h4>
-		<span>Written by {{solution.user.login}} the {{solution.dateCreate|date("F jS \\a\\t H:i")}}. </span>
-		<p>
-			{{solution.description}}
-		</p>
-		<a href="{{path('solution_vote', {'id_solution' : solution.idSolution, 'point' : 1})}}">+</a>
-		<a href="{{path('solution_vote', {'id_solution' : solution.idSolution, 'point' : 0})}}">/</a>
-		<a href="{{path('solution_vote', {'id_solution' : solution.idSolution, 'point' : -1})}}">-</a>
-	</div>
+	<blockquote>
+		<div class="pull-left">
+			<p>{{solution.sumVotes}} votes</p>
+			<a href="{{path('solution_vote', {'id_solution' : solution.idSolution, 'point' : 1})}}">+</a>
+			<a href="{{path('solution_vote', {'id_solution' : solution.idSolution, 'point' : 0})}}">/</a>
+			<a href="{{path('solution_vote', {'id_solution' : solution.idSolution, 'point' : -1})}}">-</a>
+		</div>
+		<div class="solution">
+			<h4>Solution #{{loop.index}} : {{solution.title}}</h4>
+			<small>Written by {{solution.user.login}} the {{solution.dateCreate|date("F jS \\a\\t H:i")}}. </small>
+			<p>
+				{{solution.description}}
+			</p>
+		</div>
+	</blockquote>
 	{% endfor %}
 	<a href="{{path('solution_create', {'id_idea' : idea.idIdea})}}">Add a solution</a>
 </div>
