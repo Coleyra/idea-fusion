@@ -6,7 +6,7 @@
 {% for idea in ideas %}
 <div>
 	<h3><a href="">{{idea.title}}</a></h3>
-	<span>Written by {{idea.user.login}} the {{idea.dateCreate|date("F jS \\a\\t H:i")}}. </span>
+	<small>Written by {{idea.user.login}} the {{idea.dateCreate|date("F jS \\a\\t H:i")}}. </small>
 	<p>
 		{{idea.description}}
 	</p>
